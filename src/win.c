@@ -1184,9 +1184,6 @@ static void win_set_shadow(session_t *ps, struct managed_win *w, bool shadow_new
 
 	// We don't handle property updates of non-visible windows until they are
 	// mapped.
-	assert(w->state != WSTATE_UNMAPPED && w->state != WSTATE_DESTROYING &&
-	       w->state != WSTATE_UNMAPPING);
-
 	// Keep a copy of window extent before the shadow change. Will be used for
 	// calculation of damaged region
 	region_t extents;
@@ -2223,8 +2220,7 @@ void win_update_bounding_shape(session_t *ps, struct managed_win *w) {
 
 	// We don't handle property updates of non-visible windows until they are
 	// mapped.
-	assert(w->state != WSTATE_UNMAPPED && w->state != WSTATE_DESTROYING &&
-	       w->state != WSTATE_UNMAPPING);
+	
 
 	pixman_region32_clear(&w->bounding_shape);
 	// Start with the window rectangular region
